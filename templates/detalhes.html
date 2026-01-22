@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Detalhes do Lead - Lead Capture System{% endblock %}
+
+{% block content %}
+<div class="details-section">
+    <div class="container">
+        <div class="details-header">
+            <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">← Voltar</a>
+            <h1 class="details-title">Detalhes do Lead #{{ lead.id }}</h1>
+        </div>
+
+        <div class="details-card">
+            <div class="detail-group">
+                <label>Nome Completo</label>
+                <p class="detail-value">{{ lead.nome }}</p>
+            </div>
+
+            <div class="detail-group">
+                <label>E-mail</label>
+                <p class="detail-value">
+                    <a href="mailto:{{ lead.email }}">{{ lead.email }}</a>
+                </p>
+            </div>
+
+            <div class="detail-group">
+                <label>Telefone</label>
+                <p class="detail-value">
+                    <a href="tel:{{ lead.telefone }}">{{ lead.telefone }}</a>
+                </p>
+            </div>
+
+            {% if lead.empresa %}
+            <div class="detail-group">
+                <label>Empresa</label>
+                <p class="detail-value">{{ lead.empresa }}</p>
+            </div>
+            {% endif %}
+
+            {% if lead.mensagem %}
+            <div class="detail-group">
+                <label>Mensagem</label>
+                <p class="detail-value">{{ lead.mensagem }}</p>
+            </div>
+            {% endif %}
+
+            <div class="detail-group">
+                <label>Data de Cadastro</label>
+                <p class="detail-value">{{ lead.data_cadastro.strftime('%d/%m/%Y às %H:%M:%S') }}</p>
+            </div>
+
+            <div class="details-actions">
+                <form action="{{ url_for('excluir_lead', lead_id=lead.id) }}" method="POST" class="delete-form" onsubmit="return confirm('Tem certeza que deseja excluir este lead? Esta ação não pode ser desfeita.');">
+                    <button type="submit" class="btn btn-danger">Excluir Lead</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
