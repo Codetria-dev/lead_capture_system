@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Cadastro Realizado - Lead Capture System{% endblock %}
+
+{% block content %}
+<div class="success-section">
+    <div class="container">
+        <div class="success-card">
+            <div class="success-icon"></div>
+            <h1 class="success-title">Cadastro Realizado com Sucesso!</h1>
+            <p class="success-message">Obrigado por se cadastrar, <strong>{{ lead.nome }}</strong>!</p>
+            <p class="success-info">Seus dados foram registrados e entraremos em contato em breve.</p>
+            
+            <div class="success-details">
+                <h3>Resumo do Cadastro:</h3>
+                <ul>
+                    <li><strong>Nome:</strong> {{ lead.nome }}</li>
+                    <li><strong>E-mail:</strong> {{ lead.email }}</li>
+                    <li><strong>Telefone:</strong> {{ lead.telefone }}</li>
+                    {% if lead.empresa %}
+                    <li><strong>Empresa:</strong> {{ lead.empresa }}</li>
+                    {% endif %}
+                </ul>
+            </div>
+
+            <div class="success-actions">
+                <a href="{{ url_for('index') }}" class="btn btn-primary">Voltar para Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
